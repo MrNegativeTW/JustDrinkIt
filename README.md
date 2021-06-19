@@ -24,7 +24,7 @@
 </div>
 
 ## Preview
-![](https://fakeimg.pl/440x230/282828/eae0d0/?retina=1&text=Problem?)
+<img src="https://raw.githubusercontent.com/MrNegativeTW/JustDrinkIt/main/android_client_screenshot.jpg" width="240">
 
 ## Features
 
