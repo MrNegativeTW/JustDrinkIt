@@ -4,7 +4,7 @@
 
 <h1>Just Drink It</h1>
 <h4>
-他會提醒你喝水，包含 Server 端和 Androdi 客戶端原始碼。
+他會提醒你喝水，包含 Server 端和 Android 客戶端原始碼。
 </h4>
 
 ![](https://img.shields.io/badge/Raspberry%20Pi-Any-C51A4A?style=flat-square)
@@ -41,13 +41,19 @@
 
 ### Android Client
 
-- Android Studio 4.1.2 and above
-- Android 6 and above
+- Android Studio 4.1.2+
+- Android 6.0+
 
 ### Others
 
 - Firebase Firestore
 - Firebase Cloud Message
+
+
+## Architecture
+
+![](https://fakeimg.pl/1280x720/)
+
 
 ## Installation 
 
@@ -55,20 +61,28 @@
 
 1. Create a firebase project
 
-2. [Get your Admin SDK credentials](https://console.firebase.google.com/u/1/project/_/settings/serviceaccounts/adminsdk)
+2. [Get your Admin SDK credentials](https://console.firebase.google.com/u/1/project/_/settings/serviceaccounts/adminsdk), <br>looks like  `YOUR_PROJECT-firebase-adminsdk-RANDOM_STRING.json`
 
-2. [Get your Cloud Mesaage API Key](https://console.firebase.google.com/project/_/settings/cloudmessaging)
+3. [Get your Cloud Mesaage API Key](https://console.firebase.google.com/project/_/settings/cloudmessaging)
 
-2. In Firestore, Create a `collection` called `bottleStatus`, than create a `document` with random id.
+4. In Firestore, Create a `collection` called `bottleStatus`, than create a `document` with random id.
 
-3. Copy that random id.
+5. Copy that random id.
 
 
 ### Android Client
 
-1. Open with Android Studio, than click RUN or `shift + F10` on Windows.
+1. Get your `google-services.json` from Firebase when adding app, put it in to `./DrinkInClient/app`
 
-2. Get your `device token` by pressing the float action button, which will looks like this:
+2. Modify `FirestoreManager.py` line 12, replace with your random document id.
+```kotlin
+return db.collection("bottleStatus").document("RANDOM_ID")
+    
+```
+
+3. Click `RUN`.
+
+3. Get your `device token` by pressing the float action button, which will looks like this:
 
 ```
 fWo6-TFJSVCDAV8h8DPRaQ:APA91bELNaBgKduEAWACJN-tIB8CkpDSkbloGIluxaCeMFLDjmpiz26UZqU4L-cW5VeYGK1GiMFywdcaalav8zNWCHurKu10ZnPUlH_w9YYm1WwftXrDv7X58YJNUwtdk60n6ebQWX1r
@@ -93,7 +107,7 @@ api_key = "API_KEY_HERE"
 3. Modify `firestore.py` line 10, replace with your random document id.
 
 ```python
-doc_ref = db.collection(u'bottleStatus').document(u'RANDOM_ID_HERE')
+doc_ref = db.collection(u'bottleStatus').document(u'RANDOM_ID')
 ```
 
 4. Modify `fcm.py` line 8, replace with your `android device token`.
@@ -109,7 +123,11 @@ pip3 install -r requirements.txt
 python3 index.txt
 ```
 
+## Typo
+
+I know. DrinkItClient become DrinkInClient.
+
 ## License
 ```
-License Information Here
+No idea.
 ```
